@@ -2,7 +2,7 @@ import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 const CandidateInfoHeader = (props) => {
 
-  const proposers = props.candidate.Proposers.map((proposer) => {
+  const proposers = (props.candidate.Proposers)?.map((proposer) => {
     return(
       <>
         <span className="h2 font-weight-bold mb-0">{proposer}</span>
@@ -11,7 +11,7 @@ const CandidateInfoHeader = (props) => {
     )
   });
 
-  const seconders = props.candidate.Seconders.map((seconder) => {
+  const seconders = (props.candidate.Seconders)?.map((seconder) => {
     return(
       <>
         <span className="h2 font-weight-bold mb-0">{seconder}</span>
@@ -19,9 +19,7 @@ const CandidateInfoHeader = (props) => {
       </>
     )
   });
-
-  console.log(props.candidate.Proposers);
-  console.log(props.candidate.Seconders);
+  
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
@@ -64,7 +62,7 @@ const CandidateInfoHeader = (props) => {
                         >
                           Proposers
                         </CardTitle>
-                            {proposers}
+                          {proposers}
                       </div>
                     </Row>
                   </CardBody>
@@ -81,7 +79,7 @@ const CandidateInfoHeader = (props) => {
                         >
                           Seconders
                         </CardTitle>
-                            {seconders}
+                          {seconders}
                       </div>
                     </Row>
                   </CardBody>

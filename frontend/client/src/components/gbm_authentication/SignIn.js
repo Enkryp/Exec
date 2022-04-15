@@ -43,7 +43,7 @@ export default function SignIn(props) {
           .then((res) => {
             if(res.status == 200){
                 dispatch(login(roll_no, "GBM"));
-                history.push('/gbm/dashboard');
+                window.location.href = "/gbm/dashboard";
             }
           })
           .catch((err) => {

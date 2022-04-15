@@ -63,7 +63,7 @@ function CandidateLogin (props) {
       .then((res) => {
         if(res.status == 200){
             dispatch(login(roll_no, "Candidate"));
-            history.push('/candidate/dashboard');
+            window.location.href = '/candidate/dashboard';
         }
       })
       .catch((err) => {

@@ -61,7 +61,7 @@ function AdminLogin (props) {
       .then((res) => {
         if(res.status == 200){
             dispatch(login(0, "Admin"));
-            history.push('/admin/dashboard');
+            window.location.href = '/admin/dashboard';
         }
       })
       .catch((err) => {

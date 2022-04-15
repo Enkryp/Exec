@@ -125,7 +125,7 @@ function ViewNominations(props) {
             <DropdownMenu className="dropdown-menu-arrow" right>
               <DropdownItem
                 href="#pablo"
-                onClick={(event) => viewDetails(event,data.id)}
+                onClick={(event) => viewDetails(event,data.roll_no )}
               >
                 View Complete Details
               </DropdownItem>

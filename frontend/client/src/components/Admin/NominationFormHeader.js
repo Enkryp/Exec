@@ -1,6 +1,25 @@
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 const NominationFormHeader = (props) => {
+
+  const proposers = (props.candidate.Proposers)?.map((proposer) => {
+    return(
+      <>
+        <span className="h2 font-weight-bold mb-0">{proposer}</span>
+        <br/>
+      </>
+    )
+  });
+
+  const seconders = (props.candidate.Seconders)?.map((seconder) => {
+    return(
+      <>
+        <span className="h2 font-weight-bold mb-0">{seconder}</span>
+        <br/>
+      </>
+    )
+  });
+  
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
@@ -26,7 +45,7 @@ const NominationFormHeader = (props) => {
                     </Row>
                     <p className="mt-3 mb-0 text-muted text-sm">
                       <span className="h2 font-weight-bold mb-0">
-                          {props.candidate && props.candidate.desc}
+                          {props.candidate && props.candidate.post}
                       </span>
                     </p>
                   </CardBody>
@@ -43,12 +62,7 @@ const NominationFormHeader = (props) => {
                         >
                           Proposers
                         </CardTitle>
-                            <span className="h2 font-weight-bold mb-0">Proposer1</span>
-                            <br/>
-                            <span className="h2 font-weight-bold mb-0">Proposer2</span>
-                            <br/>
-                            <span className="h2 font-weight-bold mb-0">Proposer3</span>
-                            <br/>
+                        {proposers}
                       </div>
                     </Row>
                   </CardBody>
@@ -65,12 +79,7 @@ const NominationFormHeader = (props) => {
                         >
                           Seconders
                         </CardTitle>
-                                              <span className="h2 font-weight-bold mb-0">S1</span>
-                                              <br />
-                                              <span className="h2 font-weight-bold mb-0">S2</span>
-                                              <br />
-                                              <span className="h2 font-weight-bold mb-0">S3</span>
-                                              <br/>
+                        {seconders}
                       </div>
                     </Row>
                   </CardBody>
@@ -91,7 +100,7 @@ const NominationFormHeader = (props) => {
                     </Row>
                     <p className="mt-3 mb-0 text-muted text-sm">
                       <span className="text-success mr-2">
-                        <a href = {props.candidate&& props.candidate.manifesto_link}>{props.candidate&& props.candidate.manifesto_link}</a> 
+                        <a href = {props.candidate&& props.candidate.manifesto}>{props.candidate&& props.candidate.manifesto}</a> 
                       </span>{" "}
                     </p>
                   </CardBody>

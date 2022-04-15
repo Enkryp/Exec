@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -236,6 +237,33 @@ public class AdminController {
             }
             List<AspiringCandidate> nominations = aspiringCandidateService.viewAllAspiringCandidates();
             return new ResponseEntity<Object>(nominations, HttpStatus.OK);
+        }
+        catch(Exception E){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @GetMapping("/viewNomination")
+    public ResponseEntity<Object> view_nomination(@RequestParam(value = "roll_no") String roll_no_candidate, HttpSession session){
+
+        Map<String, String> response = new HashMap<>();
+        try{
+            String roll_no = utils.isLoggedIn(session);
+            if(roll_no == null || !session.getAttribute("access_level").equals("Admin")){
+                response.put("message", "No Admin login found");
+                return new ResponseEntity<Object>(response, HttpStatus.UNAUTHORIZED);
+            }
+            
+            AspiringCandidate aspiringCandidate;
+            try{
+                aspiringCandidate = aspiringCandidateService.getAspiringCandidateByRoll(roll_no_candidate);
+            }
+            catch(Exception E){
+                response.put("message", "No such candidate found");
+                return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
+            }
+
+            return new ResponseEntity<Object>(aspiringCandidate, HttpStatus.OK);
         }
         catch(Exception E){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

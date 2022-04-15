@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+import { useHistory } from "react-router-dom";
 // node.js library that concatenates classes (strings)
 
 // reactstrap components
@@ -13,30 +14,34 @@ import {
 } from "reactstrap";
 
 import NominationFormHeader from "./NominationFormHeader";
+import axios from "axios";
 
 const NominationApplicationList = (props) => {
   const [activeNav, setActiveNav] = useState(1);
-  
-  const [candidates, setCandidates] = useState([{ id: 1,roll_no:'200122', name: "Candidate1", desc: "PRESIDENT, STUDENTS GYMKHANA",  manifesto_link: "https://drive.google.com/file/d/1oixPOrMZ9oFxudLUKQalpB1dZEnP_XTg/preview"},
-                                     {id:2,roll_no:'200122',name:"Candidate2",desc:"GENERAL SECRETARY, GAMES AND SPORTS",manifesto_link:"https://drive.google.com/file/d/1AQvEHZ26kRiCbJS26g_auBEaYRgCXScR/preview"},
-                                     {id:3,roll_no:'200122',name:"Candidate3",desc:"PRESIDENT, STUDENTS GYMKHANA",manifesto_link:"https://drive.google.com/file/d/1AQvEHZ26kRiCbJS26g_auBEaYRgCXScR/preview"},
-                                     {id:4,roll_no:'200122',name:"Candidate4",desc:"GENERAL SECRETARY, SCIENCE AND TECHNOLOGY",manifesto_link:"https://drive.google.com/file/d/1AQvEHZ26kRiCbJS26g_auBEaYRgCXScR/preview"},
-  ]);
-
+  const base_url = "http://localhost:8080/";
   const [filteredCandidates,setFilteredCandidates] = useState({});
-  var selectedCandidates;
+  const history = useHistory();
+
   useEffect(() => {
     const params = props.match.params;
-    //alert(params.id);
+    // console.log(params.id);
+
+    async function fetchData() {
+
+      axios.defaults.withCredentials = true;
+      await axios
+        .get(base_url + "api/admin/viewNomination", { params: {roll_no: params.id} })
+        .then((response) => {
+          setFilteredCandidates(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("No such nomination exists");
+          history.push("/admin/view-nominations");
+        });
+    }
     
-    selectedCandidates=candidates.filter(function (element) {
-      return element.id == params.id
-    }).map(function ({ id, name, desc, image_link, manifesto_link, poster_link }) {
-      console.log(name);
-      return { id, name, desc, image_link, manifesto_link, poster_link };
-    });
-    console.log(selectedCandidates);
-    setFilteredCandidates(selectedCandidates[0])
+    fetchData();
   },[]);
 
   const toggleNavs = (e, index) => {
