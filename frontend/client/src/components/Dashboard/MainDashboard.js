@@ -142,7 +142,7 @@ function MainDashboard(){
       >
         <div className="modal-header">
           <h6 className="modal-title" id="modal-title-notification">
-            Event Details
+            Candidate Details
           </h6>
           <button
             aria-label="Close"
@@ -178,8 +178,8 @@ function MainDashboard(){
         </div>
       </Modal>
 
-      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
-        <Container fluid>
+      <div className="header bg-gradient-info pb-8 pt-1 pt-md-8" style={{ height: "100vh", overflow: "scroll"}}>
+        <Container fluid  >
           <div className="header-body">
             <Split />
           </div>
