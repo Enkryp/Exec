@@ -65,26 +65,23 @@ const CandidateInfo = (props) => {
                 </Row>
               </CardHeader>
               <CardBody>
-                <div className="chart">
                   <CardImg
+                  className="image-fluid"
                   alt="Candidate hasn't Included a Poster Yet"
                   src={filteredCandidates && filteredCandidates.poster_link}
                   top
                 ></CardImg>
-                </div>
               </CardBody>
             </Card>
           </Col>
           <Col xl="4">
             <Card className="shadow">
               <CardBody> 
-                <div className="chart">
                   <CardImg
                   alt="..."
                   src={require("./photo.png").default}
                   top
                 ></CardImg>
-                </div>
               </CardBody>
             </Card>
           </Col>

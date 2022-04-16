@@ -100,7 +100,7 @@ const CandidateInfoHeader = (props) => {
                     </Row>
                     <p className="mt-3 mb-0 text-muted text-sm">
                       <span className="text-success mr-2">
-                        <a href = {props.candidate&& props.candidate.manifesto_link}>{props.candidate&& props.candidate.manifesto_link}</a> 
+                        <a target = "blank" href = {props.candidate&& props.candidate.manifesto_link}>{props.candidate&& props.candidate.manifesto_link}</a> 
                       </span>{" "}
                     </p>
                   </CardBody>

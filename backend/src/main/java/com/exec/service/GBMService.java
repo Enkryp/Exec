@@ -78,12 +78,12 @@ public class GBMService {
 
         GBM gbm = getGBMByRoll(roll_no_gbm);
 
-        if(!gbm.is_campaigner || gbm.campaign_requests.contains(roll_no_candidate)){
+        if(gbm.is_campaigner == false && gbm.campaign_requests.contains(roll_no_candidate)){
+            candidateService.addCampaigner(roll_no_candidate, roll_no_gbm);
             gbm.campaign_requests.clear();
             gbm.is_campaigner = true;
             gbm.campaigner_of = roll_no_candidate;
             gbmRepository.save(gbm);
-            candidateService.addCampaigner(roll_no_candidate, roll_no_gbm);
         }else{
             throw new RuntimeException();
         }

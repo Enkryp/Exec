@@ -34,7 +34,7 @@ function GBMDashboardNavbar (props) {
       .then((res) => {
         if(res.status == 200){
           dispatch(logout());
-          history.push('/gbm/login');
+          window.location.href = '/gbm/login';
         }
       })
       .catch((err) => {

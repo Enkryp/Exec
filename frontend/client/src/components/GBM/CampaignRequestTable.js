@@ -55,11 +55,11 @@ function CampaignTables(props) {
       })
       .then((response) => {
         setChanged(true);
-        alert("nomination accepted");
+        alert("Campaign request accepted");
         // setShowModal(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response);
       });
   };
 
@@ -73,7 +73,7 @@ function CampaignTables(props) {
       })
       .then((response) => {
         setChanged(true);
-        alert("nomination rejected");
+        alert("Campaign request rejected");
         // setShowModal(false);
       })
       .catch((error) => {

@@ -33,7 +33,7 @@ function CandidateDashboardNavbar (props) {
       .then((res) => {
         if(res.status == 200){
           dispatch(logout());
-          history.push('/candidate/login');
+          window.location.href = '/candidate/login';
         }
       })
       .catch((err) => {

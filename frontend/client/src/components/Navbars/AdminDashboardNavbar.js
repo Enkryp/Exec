@@ -33,7 +33,7 @@ function AdminDashboardNavbar (props) {
       .then((res) => {
         if(res.status == 200){
           dispatch(logout());
-          history.push('/admin/login');
+          window.location.href = '/admin/login';
         }
       })
       .catch((err) => {

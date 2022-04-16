@@ -16,6 +16,8 @@ import { PublicRoutes } from 'PublicRoutes';
 import { CandidateRoutes } from 'CandidateRoutes';
 import { GBMRoutes } from 'GBmRoutes';
 import { AdminRoutes } from 'AdminRoutes';
+import { CommonRoutes } from 'CommonRoutes';
+
 export default function RoutingComponent(props) {
     return (   
     <BrowserRouter>
@@ -29,10 +31,14 @@ export default function RoutingComponent(props) {
             <Redirect to="/candidates" />
         </Route>
 
+        {/* common routes */}
+
+        <CommonRoutes component={MainDashboardLayout} path="/info/:id"  exact />
+        <CommonRoutes component={ReportingPortal} path="/reporting" exact />
+        <CommonRoutes exact path="/pagenotfound" component={PageNotFound} />
+
         {/* general routes */}
         <PublicRoutes component={MainDashboardLayout} path="/candidates" exact />
-        <PublicRoutes component={MainDashboardLayout} path="/info/:id"  exact />
-        <PublicRoutes component={ReportingPortal} path="/reporting" exact />
         <PublicRoutes component={CandidateLayout} path="/candidate/login" exact />
         <PublicRoutes component={CandidateLayout} path="/candidate/signup" exact />
         <PublicRoutes component={CandidateLayout} path="/candidate/otp-verification" exact/>
@@ -40,7 +46,6 @@ export default function RoutingComponent(props) {
         <PublicRoutes component={SignIn} path="/gbm/login" exact/>
         <PublicRoutes component={SignUp} path="/gbm/signup" exact/>
         <PublicRoutes component={OTPVerification} path="/gbm/otp-verification" exact/>
-        <PublicRoutes exact path="/pagenotfound" component={PageNotFound} />
 
 
         {/* candidate routes         */}

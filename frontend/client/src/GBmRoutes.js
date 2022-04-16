@@ -3,7 +3,6 @@ import { Route, Redirect} from 'react-router-dom';
 
 export function GBMRoutes(props){
     const accesslevel = sessionStorage.getItem("access_level");
-    console.log(accesslevel);
     const {component:Component, ...rest} = props;
     const render  = props => {
         if(accesslevel != "GBM"){
