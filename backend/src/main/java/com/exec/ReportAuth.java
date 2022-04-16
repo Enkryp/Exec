@@ -1,8 +1,10 @@
 package com.exec;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 //TODO: Test if working :p
 public class ReportAuth {
  
@@ -10,21 +12,48 @@ public class ReportAuth {
     public static Boolean check(String a, String b, String c){
         ProcessBuilder processBuilder = new ProcessBuilder();
 
-	// -- Linux --
 
-	// Run a shell command
-	// processBuilder.command("bash", "-c", "ls /home/mkyong/");
+ 
+        try {
+ 
+            FileWriter fWritera = new FileWriter(
+                "./a.txt");
+				FileWriter fWriterb = new FileWriter(
+					"./b.txt");
+					FileWriter fWriterc = new FileWriter(
+                "./c.txt");
+ 
+            
+            fWritera.write(a);
+ 
+            System.out.println(a);
+ 
+            fWritera.close();
 
-	// Run a shell script
-	processBuilder.command("node ./check.js ",a,b,c);
+			fWriterb.write(b);
+ 
+            System.out.println(b);
+ 
+            fWriterb.close();
 
-	// -- Windows --
+			fWriterc.write(c);
+ 
+            System.out.println(c);
+ 
+            fWriterc.close();
+ 
+ 
+         }
+ 
+        catch (IOException e) {
+ 
+            System.out.print(e.getMessage());
+        }
+    
 
-	// Run a command
-	//processBuilder.command("cmd.exe", "/c", "dir C:\\Users\\mkyong");
 
-	// Run a bat file
-	//processBuilder.command("C:\\Users\\mkyong\\hello.bat");
+	processBuilder.command("node ./check.js ");
+
 
 	try {
 
@@ -62,7 +91,4 @@ public class ReportAuth {
         return false;
 	}
 
-    }
-}
-
-
+    }}
