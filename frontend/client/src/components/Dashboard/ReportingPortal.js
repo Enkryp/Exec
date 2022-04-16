@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import {CryptoJS} from 'crypto-js';
@@ -7,20 +7,22 @@ import {CryptoJS} from 'crypto-js';
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
-  InputGroupText,
   InputGroup,
   Row,
   Col,
+  UncontrolledCollapse,
+  NavbarBrand,
+  Navbar,
+  NavItem,
+  NavLink,
+  Nav,
+  Container
 } from "reactstrap";
 
-// core components
-import CandidateLoginNavbar from "components/Navbars/CandidateLoginNavbar";
 
 function ReportingPortal  (props) {
   const mainContent = React.useRef(null);
@@ -109,7 +111,47 @@ function ReportingPortal  (props) {
   return (
     <>
       <div className="main-content" ref={mainContent}>
-        <CandidateLoginNavbar />
+        <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md">
+        <Container className="px-4">
+          <NavbarBrand to="#" tag={Link}>
+            Exec
+          </NavbarBrand>
+          <button className="navbar-toggler" id="navbar-collapse-main">
+            <span className="navbar-toggler-icon" />
+          </button>
+          <UncontrolledCollapse navbar toggler="#navbar-collapse-main">
+            <div className="navbar-collapse-header d-md-none">
+              <Row>
+                <Col className="collapse-brand" xs="6">
+                  <Link to="/">
+                    <img
+                      alt="..."
+                      src={
+                        require("../../assets/img/brand/argon-react.png")
+                          .default
+                      }
+                    />
+                  </Link>
+                </Col>
+                <Col className="collapse-close" xs="6">
+                  <button className="navbar-toggler" id="navbar-collapse-main">
+                    <span />
+                    <span />
+                  </button>
+                </Col>
+              </Row>
+            </div>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink className="nav-link-icon" to="/candidates" tag={Link}>
+                  <i className="ni ni-planet" />
+                  <span className="nav-link-inner--text">Dashboard</span>
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </UncontrolledCollapse>
+        </Container>
+      </Navbar>
         <div className="header bg-gradient-info py-7 py-lg-8">         
           <div className="separator separator-bottom separator-skew zindex-100">
             <svg

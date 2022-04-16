@@ -5,19 +5,12 @@ import {
   Button,
   Card,
   CardBody,
-  CardHeader,
   CardImg,
   CardTitle,
   Col,
   Row,
   Modal,
-  Container,
-  FormGroup,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
+  Container
   
 } from "reactstrap";
 import { Link,useHistory } from 'react-router-dom';
@@ -25,7 +18,7 @@ import { Link,useHistory } from 'react-router-dom';
 function MainDashboard(){
   const history = useHistory();
   const [notificationModal,setNotificationModal]=useState({content:{},visible:false});
-  const [candidates, setCandidates] = useState([]);
+  const [candidates, setCandidates] = useState([{},{},{},{},{},{},{}]);
   const base_url = "http://localhost:8080/";
   const style = {
     width: "22rem",
