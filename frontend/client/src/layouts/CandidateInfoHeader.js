@@ -27,7 +27,7 @@ const CandidateInfoHeader = (props) => {
           <div className="header-body">
             {/* Card stats */}
             <Row>
-              <Col lg="6" xl="3">
+              <Col lg="6" xl="2">
                 <Card className="card-stats mb-4 mb-xl-0">
                   <CardBody>
                     <Row>
@@ -51,7 +51,7 @@ const CandidateInfoHeader = (props) => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col lg="6" xl="3">
+              <Col lg="6" xl="2">
                 <Card className="card-stats mb-4 mb-xl-0">
                   <CardBody>
                     <Row>
@@ -68,7 +68,7 @@ const CandidateInfoHeader = (props) => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col lg="6" xl="3">
+              <Col lg="6" xl="2">
                 <Card className="card-stats mb-4 mb-xl-0">
                   <CardBody>
                     <Row>
@@ -101,6 +101,27 @@ const CandidateInfoHeader = (props) => {
                     <p className="mt-3 mb-0 text-muted text-sm">
                       <span className="text-success mr-2">
                         <a target = "blank" href = {props.candidate&& props.candidate.manifesto_link}>{props.candidate&& props.candidate.manifesto_link}</a> 
+                      </span>{" "}
+                    </p>
+                  </CardBody>
+                </Card>
+              </Col>
+              <Col lg="6" xl="3">
+                <Card className="card-stats mb-4 mb-xl-0">
+                  <CardBody>
+                    <Row>
+                      <div className="col">
+                        <CardTitle
+                          tag="h5"
+                          className="text-uppercase text-muted mb-0"
+                        >
+                          Video Link
+                        </CardTitle>
+                      </div>
+                    </Row>
+                    <p className="mt-3 mb-0 text-muted text-sm">
+                      <span className="text-success mr-2">
+                        <a target = "blank" href = {props.candidate&& props.candidate.video_link}>{props.candidate&& props.candidate.video_link}</a> 
                       </span>{" "}
                     </p>
                   </CardBody>
