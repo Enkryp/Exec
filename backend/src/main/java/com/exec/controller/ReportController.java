@@ -52,7 +52,7 @@ public class ReportController {
         }
     }
 
-    @GetMapping("/keys/public/")
+    @GetMapping("/keys/public")
     public ResponseEntity<Object> getAllKeys() {
 
         try{

@@ -48,7 +48,7 @@ function ReportingPortal  (props) {
     event.preventDefault();
     //TODO: first fetch main data nahi aa rha
     await axios
-      .get(base_url + "api/report/keys/public/")
+      .get(base_url + "api/report/keys/public")
       .then((response) => {
         setKeys(response.data);
       })
@@ -56,6 +56,7 @@ function ReportingPortal  (props) {
         console.log(error);
       });
 
+    setTimeout(() => {}, 100);
     console.log(keys);
     let roll_no = prompt("Please enter your roll number");
 
