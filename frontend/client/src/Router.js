@@ -63,6 +63,7 @@ export default function RoutingComponent(props) {
         <GBMRoutes component={GBMLayout} path="/gbm/nomination" exact/>
         <GBMRoutes component={GBMLayout} path="/gbm/campaign-request" exact/>
         <GBMRoutes component={GBMLayout} path="/gbm/view-forms" exact/>
+        <GBMRoutes component={GBMLayout} path="/gbm/profile" exact/>
         {/* admin routes */}
    
         <AdminRoutes component={AdminDashboard} path="/admin/dashboard" exact/>

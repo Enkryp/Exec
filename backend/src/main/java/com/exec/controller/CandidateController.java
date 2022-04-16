@@ -343,7 +343,11 @@ public class CandidateController {
                 return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
             }
             String poster_link = body.get("poster_link");
-            poster_link = poster_link.replace("/file/d/", "/uc?export=view&id=").replace("/edit?usp=sharing", "").replace("/view?usp=sharing", "");
+            poster_link = poster_link.replace("/file/d/", "/uc?export=view&id=")
+                                    .replace("/edit?usp=sharing", "")
+                                    .replace("/view?usp=sharing", "")
+                                    .replace("/view", "")
+                                    .replace("/edit", "");
 
             candidateservice.add_poster(roll_no, poster_link);
 

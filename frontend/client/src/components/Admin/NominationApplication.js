@@ -60,32 +60,34 @@ const NominationApplicationList = (props) => {
                 <Row className="align-items-center">
                   <div className="col">
                     <h6 className="text-uppercase text-light ls-1 mb-1">
-                      Poster
+                      Manifesto
                     </h6>
                   </div>
                 </Row>
               </CardHeader>
               <CardBody>
-                <div className="chart">
-                  <CardImg
+                {/* <div className="chart"> */}
+                  {/* <CardImg
                   alt="..."
                   src={require("./no_poster.jpg").default}
                   top
-                ></CardImg>
-                </div>
+                ></CardImg> */}
+                <iframe src={filteredCandidates.manifesto} width="1000" height="1000" allow="autoplay">
+                </iframe>
+                {/* </div> */}
               </CardBody>
             </Card>
           </Col>
           <Col xl="4">
             <Card className="shadow">
               <CardBody> 
-                <div className="chart">
+                {/* <div className="chart"> */}
                   <CardImg
                   alt="..."
                   src={require("./anonymous_profile.jpg").default}
                   top
                 ></CardImg>
-                </div>
+                {/* </div> */}
               </CardBody>
             </Card>
           </Col>

@@ -12,6 +12,8 @@ import com.exec.service.GBMService;
 import com.exec.service.ReportService;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
@@ -365,6 +367,19 @@ public class GBMController {
                 return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
             }
 
+            Pattern pattern = Pattern.compile("^(https://drive.google.com/)file/d/([^/]+)/.*$");
+            Matcher matcher = pattern.matcher(body.manifesto_link);
+
+            if(!matcher.find()){
+                response.put("message", "Manifesto link not a valid google drive link");
+                return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
+            }
+
+            body.manifesto_link.replace("/edit?usp=sharing", "/preview")
+                                .replace("/view?usp=sharing", "/preview")
+                                .replace("/view", "/preview")
+                                .replace("/edit", "/preview");
+
             if(body.post == null){
                 response.put("message", "No post specified");
                 return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
@@ -390,6 +405,39 @@ public class GBMController {
             
             gbmservice.set_applied_for_candidature(roll_no);
             return ResponseEntity.status(HttpStatus.CREATED).build(); 
+        }
+        catch(Exception E){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<Object> profile(HttpSession session){
+        try{
+            String roll_no = utils.isLoggedIn(session);
+            Map<String,String> response = new HashMap<>();
+ 
+            if(roll_no == null || !session.getAttribute("access_level").equals("GBM"))
+            {
+                response.put("message", "No GBM user logged in");
+                return new ResponseEntity<Object>(response, HttpStatus.UNAUTHORIZED);
+            }
+
+            Map<String, String> profile_data = new HashMap<>();
+            GBM gbm = gbmservice.getGBMByRoll(roll_no);
+            profile_data.put("name", gbm.name);
+            profile_data.put("roll_no", gbm.roll_no);
+            profile_data.put("email", gbm.email);
+
+            if(gbm.campaigner_of == null){
+                profile_data.put("team", "Nobody");
+            }
+            else{
+                Candidate candidate = candidateService.getCandidateByRoll(gbm.campaigner_of);
+                profile_data.put("team", candidate.name);
+            }
+
+            return new ResponseEntity<Object>(profile_data, HttpStatus.OK);
         }
         catch(Exception E){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
