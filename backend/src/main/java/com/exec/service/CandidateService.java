@@ -1,7 +1,5 @@
 package com.exec.service;
 
-import java.util.ArrayList;
-
 // import javax.management.RuntimeErrorException;
 
 import com.exec.model.Candidate;
@@ -139,6 +137,23 @@ public class CandidateService {
             BasicInfo.add(candidateInfo);
         }
         return BasicInfo;
+    }
+
+    public List<Map<String, String>> viewAllForms(){
+        List<Candidate> allCandidates = candidateRepository.findAll();
+        List< Map<String, String> > forms = new ArrayList< Map<String, String> >();
+
+        for(Candidate candidate: allCandidates){
+            for(String link: candidate.video_links){
+                Map<String, String> form_data = new HashMap<>();
+                form_data.put("name", candidate.name);
+                form_data.put("roll_no", candidate.roll_no);
+                form_data.put("link", link);
+                forms.add(form_data);
+            }
+        }
+
+        return forms;
     }
 
     public void add_video(String roll_no, String link){

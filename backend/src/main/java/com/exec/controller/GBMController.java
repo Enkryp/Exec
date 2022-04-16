@@ -443,4 +443,23 @@ public class GBMController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
+    @GetMapping("/viewAllForms")
+    public ResponseEntity<Object> allForms(HttpSession session){
+        try{
+            String roll_no = utils.isLoggedIn(session);
+            Map<String,String> response = new HashMap<>();
+ 
+            if(roll_no == null || !session.getAttribute("access_level").equals("GBM"))
+            {
+                response.put("message", "No GBM user logged in");
+                return new ResponseEntity<Object>(response, HttpStatus.UNAUTHORIZED);
+            }
+
+            return new ResponseEntity<Object>(candidateService.viewAllForms(), HttpStatus.OK);
+        }
+        catch(Exception E){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 }

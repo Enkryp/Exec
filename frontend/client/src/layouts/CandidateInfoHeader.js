@@ -19,6 +19,17 @@ const CandidateInfoHeader = (props) => {
       </>
     )
   });
+
+  const videos = (props.candidate.video_links)?.map((video_link) => {
+    return(
+      <>
+        <span className="text-success mr-2">
+          <a target = "blank" href = {video_link}>{video_link}</a> 
+        </span>{" "}
+        <br></br>
+      </>
+    )
+  });
   
   return (
     <>
@@ -120,9 +131,7 @@ const CandidateInfoHeader = (props) => {
                       </div>
                     </Row>
                     <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-success mr-2">
-                        <a target = "blank" href = {props.candidate&& props.candidate.video_link}>{props.candidate&& props.candidate.video_link}</a> 
-                      </span>{" "}
+                      {videos}
                     </p>
                   </CardBody>
                 </Card>

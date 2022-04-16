@@ -18,7 +18,7 @@ import { Link,useHistory } from 'react-router-dom';
 function MainDashboard(){
   const history = useHistory();
   const [notificationModal,setNotificationModal]=useState({content:{},visible:false});
-  const [candidates, setCandidates] = useState([{},{},{},{},{},{},{}]);
+  const [candidates, setCandidates] = useState([]);
   const base_url = "http://localhost:8080/";
   const style = {
     width: "22rem",

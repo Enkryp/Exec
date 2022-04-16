@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   CardHeader,
   Table,
@@ -10,10 +10,26 @@ import {
 } from "reactstrap";
 // core components
 
+import axios from "axios";
+
 function ViewForms(props) {
-    const [formList, setFormList] = useState([{ name: "Form1", link: "https://docs.google.com/spreadsheets/d/1DD6OpOHV641tg7Cja3XO4gF6aDpVu0Ux8Np5HY0QiFk/edit#gid=1015980361" },
-                                              {name: "Form2", link: "https://docs.google.com/document/d/1Y8p9eL7GNt5OJESipdYfXNKxqhtXzGdrSH52tDOplvA/edit"}    
-                                            ]);
+    const [formList, setFormList] = useState([]);
+    const base_url = "http://localhost:8080/";
+
+    useEffect(() => {
+      async function fetchData() {
+        axios.defaults.withCredentials = true;
+        await axios
+          .get(base_url + "api/GBM/viewAllForms")
+          .then((response) => {
+            setFormList(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      fetchData();
+    }, []);
 
     const List_ = formList.map((list) => {
         return (
@@ -24,6 +40,11 @@ function ViewForms(props) {
                           </span>
                        
                     </th>
+                    <td>
+                        <span className="mb-0 text-sm">
+                          {list.roll_no}
+                        </span>
+                    </td>
                     <td>
                       <div className="d-flex align-items-center mb-0 text-sm">
                         <a href={list.link} target="_blank" color = "white">{list.link}</a>
@@ -56,7 +77,8 @@ function ViewForms(props) {
               >
                 <thead className="thead-dark">
                    <tr>
-                    <th scope="col2">Form Name</th>
+                    <th scope="col2">Name</th>
+                    <th scope="col2">Roll No</th>
                     <th scope="col2">Form Link</th>
                   </tr>
                 </thead>
