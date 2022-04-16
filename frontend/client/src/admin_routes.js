@@ -34,7 +34,7 @@ var admin_routes = [
   },
   {
     path: "/admin/view-reports",
-    name: "View Nominations",
+    name: "View Reports",
     icon: "ni ni-single-02 text-yellow",
     component: ViewReports,
     layout: "/ouradmin",

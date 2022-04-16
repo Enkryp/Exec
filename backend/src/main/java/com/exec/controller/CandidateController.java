@@ -7,7 +7,10 @@ import com.exec.model.GBM;
 import com.exec.service.CandidateService;
 import com.exec.service.GBMService;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import javax.crypto.Mac;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
@@ -333,7 +336,17 @@ public class CandidateController {
                 return new ResponseEntity<Object>(response, HttpStatus.UNAUTHORIZED);
             }
 
-            candidateservice.add_poster(roll_no, body.get("poster_link"));
+            Pattern pattern = Pattern.compile("^(https://drive.google.com/)file/d/([^/]+)/.*$");
+            Matcher matcher = pattern.matcher(body.get("poster_link"));
+
+            if(!matcher.find()){
+                response.put("message", "Not a valid google drive link");
+                return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
+            }
+            String poster_link = body.get("poster_link");
+            poster_link = poster_link.replace("/file/d/", "/uc?export=view&id=").replace("/edit?usp=sharing", "").replace("/view?usp=sharing", "");
+
+            candidateservice.add_poster(roll_no, poster_link);
 
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (Exception e) {
@@ -341,7 +354,6 @@ public class CandidateController {
         }
     }
 
-    //does reponse need "name" field?
     @GetMapping("/viewmyposter")
     public ResponseEntity<Object> view_my_poster(HttpSession session) {
         try {
