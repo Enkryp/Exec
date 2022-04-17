@@ -1,5 +1,6 @@
 # Exec
 
+Change pass in dockerfile, b.sh before use 
 One Time Build Instruction :
 ```bash
 cd backend
