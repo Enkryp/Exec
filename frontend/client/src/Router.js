@@ -55,6 +55,7 @@ export default function RoutingComponent(props) {
         <CandidateRoutes component={CandidateDashboard} path="/candidate/add-posters" exact/>
         <CandidateRoutes component={CandidateDashboard} path="/candidate/manage-forms" exact/>
         <CandidateRoutes component={CandidateDashboard} path="/candidate/request-campaigner" exact/>
+        <CandidateRoutes component={CandidateDashboard} path="/candidate/profile" exact/>
         
         
         {/* gbm routes */}

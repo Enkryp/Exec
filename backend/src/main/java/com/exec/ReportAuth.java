@@ -1,6 +1,7 @@
 package com.exec;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,21 +26,10 @@ public class ReportAuth {
  
             
             fWritera.write(a);
- 
-            System.out.println(a);
- 
             fWritera.close();
-
 			fWriterb.write(b);
- 
-            System.out.println(b);
- 
             fWriterb.close();
-
 			fWriterc.write(c);
- 
-            System.out.println(c);
- 
             fWriterc.close();
  
  
@@ -52,12 +42,14 @@ public class ReportAuth {
     
 
 
-	processBuilder.command("node ./check.js ");
+	processBuilder.command("node");
+	processBuilder.redirectInput(new File("src/main/java/com/exec/check.js"));
 
 
 	try {
 
 		Process process = processBuilder.start();
+		process.waitFor();
 
 		StringBuilder output = new StringBuilder();
 
@@ -69,12 +61,9 @@ public class ReportAuth {
 			output.append(line + "\n");
 		}
         var ab =output.toString();
-        
 
 		int exitVal = process.waitFor();
-		if (exitVal == 0 && ab.equals("True")) {
-			System.out.println("Success!");
-			System.out.println(output);
+		if (exitVal == 0 && ab.equals("true\n")) {
             return true;
 			// System.exit(0);
 		} else {

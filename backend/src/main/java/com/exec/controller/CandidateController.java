@@ -3,6 +3,7 @@ package com.exec.controller;
 import com.exec.EmailServiceImpl;
 import com.exec.Utils;
 import com.exec.model.Candidate;
+import com.exec.model.CandidateInfo;
 import com.exec.model.GBM;
 import com.exec.service.CandidateService;
 import com.exec.service.GBMService;
@@ -374,6 +375,26 @@ public class CandidateController {
             return new ResponseEntity<Object>(response, HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<Object> profile(HttpSession session){
+
+        try {
+            Map<String, String> response = new HashMap<String, String>();
+            String roll_no = utils.isLoggedIn(session);
+            if(roll_no == null || !session.getAttribute("access_level").equals("Candidate")) {
+                response.put("message", "No candidate logged in");
+                return new ResponseEntity<Object>(response, HttpStatus.UNAUTHORIZED);
+            }
+
+            CandidateInfo candidateInfo = candidateservice.getCandidateInfo(roll_no);
+            return  new ResponseEntity<Object>(candidateInfo, HttpStatus.OK);
+        }
+        catch(Exception E)
+        {
+            return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
         }
     }
             

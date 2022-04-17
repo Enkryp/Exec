@@ -105,12 +105,30 @@ public class CandidateService {
 
         try{
             Candidate candidate = getCandidateByRoll(roll_no);
+            List<String> Proposer_names = new ArrayList<>();
+            List<String> Seconder_names = new ArrayList<>();
+            List<String> Campaigner_names = new ArrayList<>();
+
+            for(String seconder: candidate.Seconders){
+                GBM gbm = getGBMByRoll(seconder);
+                Seconder_names.add(gbm.name);
+            }
+
+            for(String proposer: candidate.Proposers){
+                GBM gbm = getGBMByRoll(proposer);
+                Proposer_names.add(gbm.name);
+            }
+
+            for(String campaigner: candidate.Campaigners){
+                GBM gbm = getGBMByRoll(campaigner);
+                Campaigner_names.add(gbm.name);
+            }
             
             CandidateInfo candidateInfo = new CandidateInfo(candidate.name, 
                                                             candidate.roll_no, 
-                                                            candidate.Campaigners, 
-                                                            candidate.Proposers, 
-                                                            candidate.Seconders, 
+                                                            Campaigner_names, 
+                                                            Proposer_names, 
+                                                            Seconder_names, 
                                                             candidate.manifesto_link, 
                                                             candidate.video_links, 
                                                             candidate.poster_link, 

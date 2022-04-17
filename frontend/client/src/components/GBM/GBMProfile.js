@@ -71,7 +71,7 @@ function Profile (props){
                   </h3>
                   <div className="h5 mt-4">
                     <i className="ni business_briefcase-24 mr-2" />
-                   Student
+                   General Body Member
                   </div>
                   <div>
                     <i className="ni education_hat mr-2" />

@@ -44,20 +44,26 @@ function ReportingPortal  (props) {
     mainContent.current.scrollTop = 0;
   }, [location]);
 
+  React.useEffect(() => {
+    async function fetchData() {
+      axios.defaults.withCredentials = true;
+      await axios
+        .get(base_url + "api/report/keys/public")
+        .then((response) => {
+          setKeys(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    fetchData();
+  }, []);
+
   async function addReport(event){
     event.preventDefault();
     //TODO: first fetch main data nahi aa rha
-    await axios
-      .get(base_url + "api/report/keys/public")
-      .then((response) => {
-        setKeys(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    setTimeout(() => {}, 100);
     console.log(keys);
+
     let roll_no = prompt("Please enter your roll number");
 
     if(roll_no == null || roll_no == ""){
@@ -76,6 +82,11 @@ function ReportingPortal  (props) {
     keys.forEach((obj) => {pub_keys.push(obj.publicKey)} );
 
     let password = prompt("Please enter your password");
+    if(password == null || password == ""){
+      alert("No password filled in");
+      return;
+    }
+    
     var bytes = CryptoJS.AES.decrypt(roll_key.encryptedPriv, password);
     try{
       var decryptedPriv = bytes.toString(CryptoJS.enc.Utf8);
