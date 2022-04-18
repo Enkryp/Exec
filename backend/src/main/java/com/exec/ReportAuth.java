@@ -56,11 +56,26 @@ public class ReportAuth {
 		BufferedReader reader = new BufferedReader(
 				new InputStreamReader(process.getInputStream()));
 
+		// StringBuilder err = new StringBuilder();
+
+		// BufferedReader error = new BufferedReader(
+		// 		new InputStreamReader(process.getErrorStream()));
+
 		String line;
 		while ((line = reader.readLine()) != null) {
 			output.append(line + "\n");
 		}
         var ab =output.toString();
+		// System.out.println(ab);
+
+		// if(error.ready()){
+		// 	while ((line = error.readLine()) != null) {
+		// 		err.append(line + "\n");
+		// 	}
+		// }
+
+		// var _a =err.toString();
+		// System.out.println(_a);
 
 		int exitVal = process.waitFor();
 		if (exitVal == 0 && ab.equals("true\n")) {

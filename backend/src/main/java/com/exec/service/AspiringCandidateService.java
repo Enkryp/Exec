@@ -81,6 +81,8 @@ public class AspiringCandidateService{
     public void acceptCandidature(String roll, String name, String email){
         AspiringCandidate aspiringCandidate = getAspiringCandidateByRoll(roll);
         gbmService.setIsCampaigner(roll);
+        GBM gbm_ = gbmService.getGBMByRoll(roll);
+        gbmService.setCampaignerOf(roll, roll);
         
         Candidate candidate = new Candidate(roll, name, email, aspiringCandidate.post, aspiringCandidate.Seconders, aspiringCandidate.Proposers, aspiringCandidate.manifesto);
         for(String roll_no : aspiringCandidate.Seconders){
@@ -88,6 +90,7 @@ public class AspiringCandidateService{
 
             if(!gbm.is_campaigner){
                 gbmService.setIsCampaigner(roll_no);
+                gbmService.setCampaignerOf(roll_no, roll);
             }else{
                 throw new RuntimeException();
             }
@@ -98,6 +101,7 @@ public class AspiringCandidateService{
 
             if(!gbm.is_campaigner){
                 gbmService.setIsCampaigner(roll_no);
+                gbmService.setCampaignerOf(roll_no, roll);
             }else{
                 throw new RuntimeException();
             }

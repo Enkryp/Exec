@@ -21,8 +21,13 @@ fs.readFile('./a.txt', 'utf8' , (err, data) => {
       }
       dc=data;
       da = da.substring(1, da.length-1);
+      // console.log(da);
       var publicKeyList = da.split(",");
-      console.log(lrs.verify(publicKeyList, db, dc));
+      const KeyList = publicKeyList.map(element => {
+        return element.trim();
+      });
+      // console.log(KeyList);
+      console.log(lrs.verify(KeyList, db, dc));
     })
   })
 })

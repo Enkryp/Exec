@@ -162,7 +162,7 @@ public class CandidateService {
         List< Map<String, String> > forms = new ArrayList< Map<String, String> >();
 
         for(Candidate candidate: allCandidates){
-            for(String link: candidate.video_links){
+            for(String link: candidate.form_link){
                 Map<String, String> form_data = new HashMap<>();
                 form_data.put("name", candidate.name);
                 form_data.put("roll_no", candidate.roll_no);

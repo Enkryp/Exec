@@ -267,9 +267,10 @@ public class CandidateController {
             List <String> forms = candidateservice.view_forms(roll_no); 
             List<Map<String,String>> form_links = new ArrayList<>();
             for (Integer i = 0; i < forms.size(); ++i){
-                response.put("name", "Form " + i.toString());
-                response.put("link", forms.get(i));
-                form_links.add(response);
+                Map<String, String> _response = new HashMap<String, String>();
+                _response.put("name", "Form " + i.toString());
+                _response.put("link", forms.get(i));
+                form_links.add(_response);
             }
             return new ResponseEntity<Object>(form_links, HttpStatus.OK);
         }
@@ -309,9 +310,10 @@ public class CandidateController {
             List<String> videos = candidateservice.view_videos(roll_no);
             List<Map<String,String>> video_links = new ArrayList<>();
             for(Integer i = 1; i <= videos.size(); i++) {
-                response.put("name", "Video " + i.toString());
-                response.put("link", videos.get(i-1));
-                video_links.add(response);
+                Map<String, String> _response = new HashMap<String, String>();
+                _response.put("name", "Video " + i.toString());
+                _response.put("link", videos.get(i-1));
+                video_links.add(_response);
             }
 
             return new ResponseEntity<Object>(video_links, HttpStatus.OK);

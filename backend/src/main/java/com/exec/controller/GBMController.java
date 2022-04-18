@@ -375,10 +375,10 @@ public class GBMController {
                 return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
             }
 
-            body.manifesto_link.replace("/edit?usp=sharing", "/preview")
-                                .replace("/view?usp=sharing", "/preview")
-                                .replace("/view", "/preview")
-                                .replace("/edit", "/preview");
+            body.manifesto_link = body.manifesto_link.replace("/edit?usp=sharing", "/preview")
+                                                    .replace("/view?usp=sharing", "/preview")
+                                                    .replace("/view", "/preview")
+                                                    .replace("/edit", "/preview");
 
             if(body.post == null){
                 response.put("message", "No post specified");

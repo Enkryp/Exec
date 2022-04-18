@@ -44,6 +44,13 @@ public class GBMService {
         gbmRepository.save(gbm);
     }
 
+    public void setCampaignerOf(String gbm_roll, String candidate_roll)
+    {
+        GBM gbm = getGBMByRoll(gbm_roll);
+        gbm.campaigner_of = candidate_roll;
+        gbmRepository.save(gbm);
+    }
+
     public void addCampainRequests(String roll_no_gbm, String roll_no_candidate){
 
         GBM gbm = getGBMByRoll(roll_no_gbm);
