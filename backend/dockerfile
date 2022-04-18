@@ -6,7 +6,7 @@ COPY . /Exec/
 # RUN cd backend
 RUN cd Exec* && npm install
 RUN cd Exec* && chmod +x b.sh
-RUN cd Exec* &&  export SPRING_DATA_MONGODB_PASS=p1xx &&export SPRING_DATA_EMAIL_PASS=p2xx && ./mvnw spring-boot:run
+# RUN cd Exec* &&  export SPRING_DATA_MONGODB_PASS=p1xx &&export SPRING_DATA_EMAIL_PASS=p2xx && ./mvnw spring-boot:run
 
 
 
