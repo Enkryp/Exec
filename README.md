@@ -15,3 +15,11 @@ sudo docker container run -u -0 -it -p 8080:8080 exec2:latest  /bin/sh  /Exec/b.
  ```
 
 
+To Run Frontend
+
+```bash
+cd frontend/client
+npm install
+npm start
+ ```
+
