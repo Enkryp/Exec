@@ -1,5 +1,10 @@
 # Exec
 
+- Information about the scope and specifications of the app is present in srs.pdf (Software Requirements Specification)
+- Information about the operation of the app is present in User_Manual_1.pdf 
+
+### Build Instructions
+
 Change pass in dockerfile, b.sh before use 
 One Time Build Instruction :
 ```bash
